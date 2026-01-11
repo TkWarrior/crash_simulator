@@ -1,35 +1,34 @@
-```java
-// Patch for CrashDivide to prevent java.lang.ArithmeticException: / by zero
-    @GetMapping("/crash/divide")
-    public String CrashDivide(@RequestParam(defaultValue = "1") int numerator,
-                              @RequestParam(defaultValue = "0") int denominator) {
-        if (denominator == 0) {
-            // Prevent division by zero
-            // Depending on desired application behavior, you could:
-            // 1. Return an error message to the client.
-            // 2. Throw a more specific, controlled exception (e.g., IllegalArgumentException)
-            //    which can be caught by a global exception handler.
-            // 3. Return a specific error response entity.
-            return "Error: Cannot divide by zero. Please provide a non-zero denominator.";
-        }
-        int result = numerator / denominator;
-        return "Result: " + result;
+@GetMapping()
+    public String HelloController(){
+        return "Hello frontend";
     }
 
-// Patch for CrashNull to prevent java.lang.NullPointerException: Cannot invoke "String.toLowerCase()" because "name" is null
-    @GetMapping("/crash/null")
-    public String CrashNull(@RequestParam(required = false) String name) {
-        if (name == null) {
-            // Prevent NullPointerException
-            // Depending on desired application behavior, you could:
-            // 1. Return an error message to the client.
-            // 2. Provide a default value for 'name'.
-            // 3. Throw a more specific, controlled exception.
-            return "Error: Name cannot be null. Please provide a name.";
-            // Example of providing a default value:
-            // name = "anonymous";
-        }
-        String lowerCaseName = name.toLowerCase();
-        return "Lowercased name: " + lowerCaseName;
+    // 1. Arithmetic Exception (Divide by zero)
+    @GetMapping("/divide")
+    public int CrashDivide(){
+        int x = 5 ;
+        int y = 0 ;
+        return x/y ; // arithematic exception
     }
-```
+
+    // 2. Null Pointer Exception
+    @GetMapping("/null")
+    public String CrashNull(){
+        String name = null ;
+        return name.toLowerCase(); // null pointer exception
+    }
+
+    // 3. Simulated Database Failure
+    @GetMapping("/crash/db")
+    public String crashDb() {
+        throw new RuntimeException("Database connection timeout");  //  fake DB failure
+    }
+
+    @GetMapping("/logs")
+    public String getLogs() throws IOException {
+        Path logFile = Path.of("logs/app.log");
+        if (!Files.exists(logFile)) {
+            return "Log file not found";
+        }
+        return Files.readString(logFile);
+    }
