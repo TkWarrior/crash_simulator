@@ -21,16 +21,13 @@ public class CrashController {
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
 ```java
-public void CrashDivide() {
-    int dividend = 5;
-    int divisor = 0;
-    if (divisor == 0) {
-        // Handle division by zero error
+public int CrashDivide(){
+    int x = 5 ;
+    int y = 0 ;
+    if (y == 0) {
         throw new ArithmeticException("Cannot divide by zero");
-    } else {
-        int result = dividend / divisor;
-        System.out.println(result);
     }
+    return x/y ;
 }
 ```
 
