@@ -20,11 +20,28 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-    public int CrashDivide(){
-        int x = 5 ;
-        int y = 0 ;
-        return x/y ; // arithematic exception
+Here's the fixed method:
+
+```java
+/**
+ * Performs division operation.
+ *
+ * @param denominator The divisor.
+ * @return The result of the division operation.
+ * @throws IllegalStateException if the divisor is zero.
+ */
+CrashResult CrashController.CrashDivide(int denominator) {
+    if (denominator == 0) {
+        throw new IllegalStateException("Cannot divide by zero.");
     }
+    int result = this.value / denominator;
+    return new CrashResult(result);
+}
+```
+
+In this fixed method, I've added a check to ensure that the divisor is not zero before performing the division operation. If the divisor is zero, it throws an `IllegalStateException` to indicate that the operation cannot be performed. This prevents the division by zero error from occurring. 
+
+Note: I assumed the `value` is the variable where the dividend is stored, and `CrashResult` is a class where the result is stored. Please replace these with the actual variable names used in your code.
 
     // 2. Null Pointer Exception
     @GetMapping("/null")
