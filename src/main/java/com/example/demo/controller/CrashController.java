@@ -20,11 +20,15 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-    public int CrashDivide(){
-        int x = 5 ;
-        int y = 0 ;
-        return x/y ; // arithematic exception
+public int CrashDivide(){
+    int x = 5 ;
+    int y = 0 ;
+    if(y != 0){
+        return x/y ; 
+    } else {
+        return 0; // or throw a custom exception or handle it in some other way
     }
+}
 
     // 2. Null Pointer Exception
     @GetMapping("/null")
