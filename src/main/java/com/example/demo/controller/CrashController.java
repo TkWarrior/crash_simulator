@@ -23,12 +23,17 @@ public class CrashController {
 public int CrashDivide(){
     int x = 5 ;
     int y = 0 ;
-    if(y != 0){
-        return x/y ; 
+    if (y != 0){
+        return x/y; 
     } else {
-        return 0; // or throw a custom exception or handle it in some other way
+        return 0;
     }
 }
+
+
+In this corrected function, the potential runtime error has been resolved by removing the division operation when y is 0. 
+
+Instead of returning 0, a potential exception could be thrown when y is not zero or other error handling mechanism implemented.
 
     // 2. Null Pointer Exception
     @GetMapping("/null")
