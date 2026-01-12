@@ -20,14 +20,13 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-public int CrashDivide() {
-    int x = 5;
-    int y = 0;
-    if (y != 0) {
-        return x / y;
+public int CrashDivide(){
+    int x = 5 ;
+    int y = 0 ;
+    if(y != 0){
+        return x/y ; 
     } else {
-        // Consider throwing a custom exception or handle it in some other way
-        throw new ArithmeticException("Division by zero is not allowed.");
+        return 0;
     }
 }
 
