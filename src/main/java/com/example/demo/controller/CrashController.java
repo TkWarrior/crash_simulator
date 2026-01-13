@@ -20,14 +20,21 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-public int CrashDivide(){
-    int x = 5 ;
-    int y = 0 ;
-    if(y != 0 && y != 0 && y != Integer.MIN_VALUE){
-        return x/y; 
-    } else {
+public int CrashDivide(int x, int y){
+    if(y == 0 || y == Integer.MIN_VALUE) {
         throw new ArithmeticException("Cannot divide by zero");
     }
+    return x/y;
+}
+
+However, if you wish for the function to still return something (even when dividing by zero) you can do:
+
+
+public int CrashDivide(int x, int y){
+    if(y == 0 || y == Integer.MIN_VALUE) {
+        return 0; // return a default value (in this case 0) instead of throwing an exception
+    }
+    return x/y;
 }
 
     // 2. Null Pointer Exception
