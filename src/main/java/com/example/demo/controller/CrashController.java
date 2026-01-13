@@ -23,7 +23,7 @@ public class CrashController {
 public int CrashDivide(){
     int x = 5 ;
     int y = 0 ;
-    if(y != 0 && y != 0 && y != Integer.MIN_VALUE){
+    if(y != 0 && y != 0 && y != Integer.MIN_VALUE && y != 0){
         return x/y; 
     } else {
         throw new ArithmeticException("Cannot divide by zero");
