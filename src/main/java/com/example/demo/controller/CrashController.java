@@ -21,13 +21,8 @@ public class CrashController {
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
 public String CrashNull(){
-    String name;
-    name = null;
-    if (name!=null) {
-        return name.toLowerCase();
-    } else {
-        return "Name is null";
-    }
+    String name = null ;
+    return name != null ? name.toLowerCase() : "";
 }
 
     // 2. Null Pointer Exception
