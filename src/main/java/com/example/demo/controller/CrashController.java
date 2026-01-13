@@ -26,7 +26,7 @@ public int CrashDivide(){
     if(y != 0 && y != 0 && y != Integer.MIN_VALUE){
         return x/y; 
     } else {
-        throw new ArithmeticException("Cannot divide by zero");
+        return Integer.MAX_VALUE; // replaced throw with a default return value
     }
 }
 
