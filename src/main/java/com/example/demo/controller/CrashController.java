@@ -20,13 +20,13 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-public int CrashDivide(){
-    int x = 5 ;
-    int y = 0 ;
-    if(y != 0 && y != 0 && y != Integer.MIN_VALUE){
-        return x/y; 
+public String CrashNull(){
+    String name;
+    name = null;
+    if (name!=null) {
+        return name.toLowerCase();
     } else {
-        throw new ArithmeticException("Cannot divide by zero");
+        return "Name is null";
     }
 }
 
