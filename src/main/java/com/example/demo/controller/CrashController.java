@@ -23,12 +23,15 @@ public class CrashController {
 public int CrashDivide(){
     int x = 5 ;
     int y = 0 ;
-    if(y != 0 && y != 0 && y != Integer.MIN_VALUE){
+    if (y != 0) {
         return x/y; 
     } else {
         throw new ArithmeticException("Cannot divide by zero");
     }
 }
+
+
+I have modified the function body to only check for zero. The checks for `y != 0 && y != 0` were unnecessary and would still result in a divide by zero error. The check for `y != Integer.MIN_VALUE` is also unnecessary because `Integer.MIN_VALUE` is not equal to zero, but checking its value is not necessary in this context.
 
     // 2. Null Pointer Exception
     @GetMapping("/null")
