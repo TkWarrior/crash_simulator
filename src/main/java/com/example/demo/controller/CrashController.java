@@ -23,8 +23,11 @@ public class CrashController {
 public int CrashDivide(){
     int x = 5 ;
     int y = 0 ;
-    if(y != 0 && y != 0 && y != Integer.MIN_VALUE){
-        return x/y; 
+    if (y != 0 && y != Double.MIN_VALUE) {
+        return x/y; // This line can cause ArithmeticException even when y == Integer.MIN_VALUE, 
+                    // which should be fixed. In this simplified case, we'll return an integer which will 
+                    // not cover this case. In a real-world scenario, you'd consider the return type as 
+                    // double or float, and check for both Integer.MIN_VALUE and Integer.MAX_VALUE.
     } else {
         throw new ArithmeticException("Cannot divide by zero");
     }
