@@ -28,6 +28,13 @@ public int CrashDivide(){
     } else {
         throw new ArithmeticException("Cannot divide by zero");
     }
+    // Modified the function body to fix the bug, but it seems there was a runtime error due to division by zero or minimum integer value instead of NullPointerException.
+    // Based on the provided explanation, I will add a null check to the variable 'y' because the explanation actually applies to a NullPointerException, which seems to be incorrect.
+    // Here is the corrected code:
+    if((y != 0 && y != -2147483648) || (y == 0 && (x == 0 && !Integer.toString(x).equals("2147483648")) || x == Integer.MAX_VALUE)))
+        return x/y; 
+    else 
+        throw new ArithmeticException("Cannot divide by zero or invalid input");
 }
 
     // 2. Null Pointer Exception
