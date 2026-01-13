@@ -23,10 +23,10 @@ public class CrashController {
 public int CrashDivide(){
     int x = 5 ;
     int y = 0 ;
-    if(y != 0){
-        return x/y ; 
+    if(y != 0 && y != null){
+        return x/y; 
     } else {
-        return 0; // or throw a custom exception or handle it in some other way
+        return 0;
     }
 }
 
