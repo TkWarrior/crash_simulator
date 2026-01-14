@@ -34,15 +34,26 @@ public class CrashController {
         }
     }
     @GetMapping("/null")
-    public String CrashNull() {
-        String name;
-        name = null;
-        if (name != null) {
-            return name.toLowerCase();
-        } else {
-            return "Name is null";
-        }
+public String CrashNull() {
+    String name = ""; // Initialize the name variable to an empty string
+    if (name != null) {
+        return name.toLowerCase(); // If name is not null, try to convert it to lowercase
+    } else {
+        return "Name is null"; // If name is null, return this message
     }
+}
+
+
+However, considering the issue here, it would be better to check for an empty string as well:
+
+public String CrashNull() {
+    String name = ""; // Initialize the name variable to an empty string
+    if (name != null && !name.isEmpty()) {
+        return name.toLowerCase(); // If name is not empty or null, try to convert it to lowercase
+    } else {
+        return "Name is null or empty"; // If name is null or empty, return this message
+    }
+}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
