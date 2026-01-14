@@ -34,13 +34,27 @@ public class CrashController {
         }
     }
    @GetMapping("/null")
-    public String CrashNull() {
-        String name;
-        name = null;
+public String CrashNull() {
+    String name = "Unknown"; // assign a default value to name
+    name = null;
 
+    return name != null ? name.toLowerCase() : "Cannot convert to lowercase";
+}
+
+
+However, the above code still has a possibility of a `NullPointerException` because we're assigning `null` to `name` right after assigning a default value.
+
+To fix this issue, the corrected function will be:
+
+
+public String CrashNull() {
+    String name = null;
+    if (name != null) {
         return name.toLowerCase();
-
+    } else {
+        return "Unknown or null value";
     }
+}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
