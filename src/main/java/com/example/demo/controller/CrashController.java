@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/crash")
@@ -20,14 +24,14 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-public int CrashDivide(){
-    int x = 5 ;
-    int y = 0 ;
-    if(y != 0 && y != null){
-        return x/y; 
-    } else {
-        return 0;
-    }
+    public int CrashDivide(){
+        int x = 5 ;
+        int y = 0 ;
+        if(y != 0){
+            return x/y;
+        } else {
+            return 0;
+        }
 }
 
     // 2. Null Pointer Exception
@@ -38,9 +42,41 @@ public int CrashDivide(){
     }
 
     // 3. Simulated Database Failure
-    @GetMapping("/crash/db")
+    @GetMapping("/db")
     public String crashDb() {
         throw new RuntimeException("Database connection timeout");  //  fake DB failure
+    }
+
+    @GetMapping("/index")
+    public String crashIndex() {
+        int[] data = {1, 2, 3};
+        return String.valueOf(data[10]);
+    }
+
+    @GetMapping("/number")
+    public String crashNumber() {
+        String num = "abc";
+        int value = Integer.parseInt(num);
+        return String.valueOf(value);
+    }
+
+    @GetMapping("/file")
+    public String crashFile() throws Exception {
+        Files.readAllLines(Paths.get("missing.txt"));
+        return "OK";
+    }
+
+    @GetMapping("/memory")
+    public String crashMemory() {
+        List<String> list = new ArrayList<>();
+        while (true) {
+            list.add(UUID.randomUUID().toString());
+        }
+    }
+
+    @GetMapping("/stack")
+    public String crashStack() {
+        return crashStack();
     }
 
     @GetMapping("/logs")
