@@ -34,13 +34,19 @@ public class CrashController {
         }
     }
     @GetMapping("/null")
-    public String CrashNull() {
-        String name;
-        name = null;
-
-        return name.toLowerCase();
-
+public String CrashNull() {
+    String name = "";
+    try {
+        String trimmedName = name != null ? name.trim() : "";
+        if (!trimmedName.isEmpty()) {
+            return trimmedName.toLowerCase();
+        } else {
+            return "Name cannot be empty";
+        }
+    } catch (Exception e) {
+        return "An error occurred: " + e.getMessage();
     }
+}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
