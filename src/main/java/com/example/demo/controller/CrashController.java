@@ -33,28 +33,14 @@ public class CrashController {
             return 0;
         }
     }
-   @GetMapping("/null")
-public String CrashNull() {
-    String name = "Unknown"; // assign a default value to name
-    name = null;
+    @GetMapping("/null")
+    public String CrashNull() {
+        String name;
+        name = null;
 
-    return name != null ? name.toLowerCase() : "Cannot convert to lowercase";
-}
-
-
-However, the above code still has a possibility of a `NullPointerException` because we're assigning `null` to `name` right after assigning a default value.
-
-To fix this issue, the corrected function will be:
-
-
-public String CrashNull() {
-    String name = null;
-    if (name != null) {
         return name.toLowerCase();
-    } else {
-        return "Unknown or null value";
+
     }
-}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
@@ -62,37 +48,6 @@ public String CrashNull() {
         throw new RuntimeException("Database connection timeout");  //  fake DB failure
     }
 
-    @GetMapping("/index")
-    public String crashIndex() {
-        int[] data = {1, 2, 3};
-        return String.valueOf(data[10]);
-    }
-
-    @GetMapping("/number")
-    public String crashNumber() {
-        String num = "abc";
-        int value = Integer.parseInt(num);
-        return String.valueOf(value);
-    }
-
-    @GetMapping("/file")
-    public String crashFile() throws Exception {
-        Files.readAllLines(Paths.get("missing.txt"));
-        return "OK";
-    }
-
-    @GetMapping("/memory")
-    public String crashMemory() {
-        List<String> list = new ArrayList<>();
-        while (true) {
-            list.add(UUID.randomUUID().toString());
-        }
-    }
-
-    @GetMapping("/stack")
-    public String crashStack() {
-        return crashStack();
-    }
 
     @GetMapping("/logs")
     public String getLogs() throws IOException {
