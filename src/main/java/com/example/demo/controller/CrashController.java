@@ -44,12 +44,14 @@ public String CrashNull(){
     }
 
     @GetMapping("/logs")
-    public String getLogs() throws IOException {
-        Path logFile = Path.of("logs/app.log");
-        if (!Files.exists(logFile)) {
-            return "Log file not found";
-        }
-        return Files.readString(logFile);
+public String getLogs() throws IOException {
+    Path logFile = Path.of("logs/app.log");
+    if (!Files.exists(logFile)) {
+        return "Log file not found";
+    } else if (Files.size(logFile) > 1024 * 1024 * 10) {  // 10MB threshold to prevent excessive string allocation
+        return "Log file is too large to read";
     }
+    return Files.readString(logFile);
+}
 
 }
