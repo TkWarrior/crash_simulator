@@ -34,15 +34,47 @@ public class CrashController {
         }
     }
     @GetMapping("/null")
-    public String CrashNull() {
-        String name;
-        name = null;
-        if (name != null) {
-            return name.toLowerCase();
-        } else {
+public String CrashNull() {
+    String name;
+    name = null;
+    if (name != null) {
+        return name.toLowerCase();
+    } else {
+        // Handle null value by returning a default message
+        if (name == null) {
             return "Name is null";
+        } else {
+            return name.toLowerCase();
         }
     }
+}
+
+
+However, the above function will still throw a `NullPointerException` because the `toLowerCase()` method is being called on a variable before checking it.
+
+Here's the corrected function:
+
+
+public String CrashNull() {
+    String name;
+    name = null;
+    if (name != null) {
+        return name.toLowerCase();
+    } else {
+        // Handle null value by returning a default message
+        return "Name is null";
+    }
+}
+
+
+However, there is an even better way to do this. Java's ternary operator can be used to simplify the function:
+
+
+public String CrashNull() {
+    String name;
+    name = null;
+    return name != null ? name.toLowerCase() : "Name is null";
+}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
