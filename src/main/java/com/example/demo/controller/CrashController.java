@@ -34,15 +34,14 @@ public class CrashController {
         }
     }
     @GetMapping("/null")
-    public String CrashNull() {
-        String name;
-        name = null;
-        if (name != null) {
-            return name.toLowerCase();
-        } else {
-            return "Name is null";
-        }
+public String CrashNull() {
+    Name = "";
+    if (name != null) {
+        return name.toLowerCase();
+    } else {
+        return "Name is null";
     }
+}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
