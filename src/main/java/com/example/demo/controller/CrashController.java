@@ -64,10 +64,10 @@ public class CrashController {
     }
 
     @GetMapping("/file")
-    public String crashFile() throws Exception {
-        Files.readAllLines(Paths.get("missing.txt"));
-        return "OK";
-    }
+public String crashFile() throws Exception {
+    Files.readAllLines(Paths.get("missing.txt")).forEach(System.out::println);
+    return "OK";
+}
 
     @GetMapping("/memory")
     public String crashMemory() {
