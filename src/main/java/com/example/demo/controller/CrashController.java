@@ -24,26 +24,29 @@ public class CrashController {
 
     // 1. Arithmetic Exception (Divide by zero)
     @GetMapping("/divide")
-    public int CrashDivide(){
-        int x = 5 ;
-        int y = 0 ;
-        if(y != 0){
-            return x/y;
+    public int CrashDivide() {
+        int x = 5;
+        int y = 0;
+        if (y != 0) {
+            return x / y;
         } else {
             return 0;
         }
-}
-
-    // 2. Null Pointer Exception
+    }
     @GetMapping("/null")
-    public String CrashNull(){
-        String name = null ;
-        return name.toLowerCase(); // null pointer exception
+    public String CrashNull() {
+        String name;
+        name = null;
+        if (name != null) {
+            return name.toLowerCase();
+        } else {
+            return "Name is null";
+        }
     }
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
-    public String crashDb() {
+    public String crashDb(){
         throw new RuntimeException("Database connection timeout");  //  fake DB failure
     }
 
