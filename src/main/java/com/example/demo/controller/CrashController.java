@@ -34,15 +34,18 @@ public class CrashController {
         }
     }
     @GetMapping("/null")
-    public String CrashNull() {
-        String name;
-        name = null;
-        if (name != null) {
-            return name.toLowerCase();
+public String CrashNull() {
+    String name = null;
+    if (name != null) {
+        if(name.isEmpty()) { // added condition to check if a string is empty
+            return "Name is empty";
         } else {
-            return "Name is null";
+            return name.toLowerCase();
         }
+    } else {
+        return "Name is null";
     }
+}
 
     // 3. Simulated Database Failure
     @GetMapping("/db")
